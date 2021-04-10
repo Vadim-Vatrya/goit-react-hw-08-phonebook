@@ -1,13 +1,6 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getLoading } from './redux/contacts/contact-selectors';
-import {fetchContacts} from './redux/contacts/contact-operations';
 
-import Container from './components/Container';
-import ContactForm from './components/ContactForm';
-import Filter from './components/Filter';
-import ContactList from './components/ContactList';
-import Loader from './components/Loader';
+
+
 import { Switch } from '@material-ui/core';
 import { Router } from '@material-ui/icons';
 
@@ -19,7 +12,7 @@ const App =() => {
             <Router exact path='/' component={HomeView} />
             <Router path='/contacts' component ={ContactsView} />
             <Router path='/register' component={RegisterView} />
-            <Router path='/login' component={LoginPage} />
+            <Router path='/login' component={LoginView} />
         </Switch>
     </Container>
 }
