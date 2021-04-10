@@ -81,7 +81,7 @@ const RegisterView = () => {
         </labelForm>
 
        
-          <button type="submit">Login</button>
+          <button type="submit">Sing Up</button>
         
       </form>
     </>

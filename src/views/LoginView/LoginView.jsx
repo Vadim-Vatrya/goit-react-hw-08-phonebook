@@ -67,4 +67,6 @@ const LoginView = () => {
       </form>
     </>
   )
-}
+};
+
+export default LoginView;
