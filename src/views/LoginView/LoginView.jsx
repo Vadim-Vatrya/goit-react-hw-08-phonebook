@@ -13,22 +13,23 @@ const LoginView = () => {
     const { name, value } = event.target;
     switch (name) {
       case 'email':
-        return setEmail(value);
+          setEmail(value);
+          break;
 
       case 'password':
-        return setPassword(value);
+          setPassword(value);
+          break;
 
       default:
-        return;
-    }
+          return;
+  }
   };
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!email || !password) {
-      alert('Error');
-    };
+    if (!email || !password) 
+     return;
 
     dispatch(authOperations.logIn({ email, password }));
     setEmail('');
@@ -44,21 +45,19 @@ const LoginView = () => {
           <inputForm
             onChange={handleChange}
             type="email"
-            name={'email'}
+            name="email"
             placeholder="Enter e-mail"
             value={email}
-            required
           />
         </labelForm>
         <labelForm>
           Password
           <inputForm
             onChange={handleChange}
-            type="current-password"
-            name={'password'}
+            type="password"
+            name="password"
             placeholder="Enter password"
             value={password}
-            required
           />
         </labelForm>
 
