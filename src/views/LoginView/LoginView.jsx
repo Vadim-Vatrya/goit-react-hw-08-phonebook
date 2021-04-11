@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import {  useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth/auth-operations';
 
 const LoginView = () => {
@@ -40,7 +40,7 @@ const LoginView = () => {
   return (
     <>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <labelForm>
           E-mail
           <inputForm
