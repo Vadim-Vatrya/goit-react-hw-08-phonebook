@@ -35,8 +35,9 @@ const RegisterView = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!name || !email || !password)
-     return;
+    if (!name || !email || !password){ 
+      return
+    };
 
     dispatch(authOperations.logIn({ name, email, password }));
     setName('');

@@ -28,8 +28,9 @@ const LoginView = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!email || !password) 
-     return;
+    if (!email || !password) { 
+      return
+    };
 
     dispatch(authOperations.logIn({ email, password }));
     setEmail('');
