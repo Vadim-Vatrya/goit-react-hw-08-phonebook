@@ -41,26 +41,26 @@ const LoginView = () => {
     <>
       
       <form onSubmit={handleSubmit} autoComplete="off">
-        <labelForm>
-          E-mail
-          <inputForm
+        <label>
+          <span>E-mail</span>
+          <input
             onChange={handleChange}
             type="email"
             name="email"
             placeholder="Enter e-mail"
             value={email}
           />
-        </labelForm>
-        <labelForm>
-          Password
-          <inputForm
+        </label>
+        <label>
+         <span>Password</span> 
+          <input
             onChange={handleChange}
             type="password"
             name="password"
             placeholder="Enter password"
             value={password}
           />
-        </labelForm>
+        </label>
 
        
           <button type="submit">Login</button>

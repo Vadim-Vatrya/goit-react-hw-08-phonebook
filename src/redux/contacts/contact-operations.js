@@ -13,7 +13,7 @@ import {
 } from './contact-actions';
 
 
-axios.defaults.baseURL = 'http://localhost:4040';
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 
 export const fetchContacts = () => dispatch => {

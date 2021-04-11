@@ -1,6 +1,9 @@
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-import { Switch, Router} from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Switch, Redirect} from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+import authOperations from './redux/auth/auth-operations'
 
 import AppBar from './components/AppBar';
 
@@ -13,15 +16,25 @@ import LoginView from './views/LoginView';
 
  
 const App =() => {
-    <>
+    
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(authOperations.getCurrentUser());
+    }, [dispatch]);
+    return(
+        <>
         <AppBar />
         <Switch>
-            <Router exact path='/' component={HomeView} />
-            <Router path='/contacts' component ={ContactsView} />
-            <Router path='/register' component={RegisterView} />
-            <Router path='/login' component={LoginView} />
+            <PublicRoute exact path="/"component={HomeView} />
+            <PrivateRoute path='/contacts'  redirectTo="/login" component ={ContactsView} />
+            <PublicRoute path="/register" restricted redirectTo="/contacts" component={RegisterView}/>
+            <PublicRoute path="/login" restricted redirectTo="/contacts" component={LoginView}/>
+            <Redirect to="/" />
         </Switch>
     </>
+    )
+    
 }
 
 export default App;

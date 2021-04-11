@@ -50,36 +50,36 @@ const RegisterView = () => {
     <>
       
       <form onSubmit={handleSubmit} autoComplete="off">
-        <labelForm>
+        <label>
           Name
-          <inputForm
+          <input
             onChange={handleChange}
             type="name"
             name="name"
             placeholder="Enter name"
             value={name}
           />
-        </labelForm>
-        <labelForm>
+        </label>
+        <label>
           E-mail
-          <inputForm
+          <input
             onChange={handleChange}
             type="email"
             name="email"
             placeholder="Enter e-mail"
             value={email}
           />
-        </labelForm>
-        <labelForm>
+        </label>
+        <label>
           Password
-          <inputForm
+          <input
             onChange={handleChange}
             type="password"
             name="password"
             placeholder="Enter password"
             value={password}
           />
-        </labelForm>
+        </label>
 
         <button type="submit">Sing Up</button>
         

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import authSelectors from '../../redux/auth/auth-selectors';
 
 const Navigation = () => {
-  const isAuthenticated = useSelector(authSelectors.getisAuthenticated);
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
 
   return (
     <nav>
@@ -13,13 +13,17 @@ const Navigation = () => {
       to='/'
       // className={s.link}
       // activeClassName={s.activeLink}
-      ></NavLink>
+      >
+        Home
+      </NavLink>
       {isAuthenticated && (
         <NavLink
         to='/contacts'
         // className={s.link}
         // activeClassName={s.activeLink}
-        ></NavLink>
+        >
+          Contacts
+        </NavLink>
       )}
     </nav>
   )
