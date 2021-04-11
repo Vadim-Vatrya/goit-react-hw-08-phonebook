@@ -3,7 +3,7 @@ import authActions from './auth-actions';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
-const token = {
+const userToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -12,14 +12,22 @@ const token = {
   },
 };
 
-
 /*
  * POST @ /users/signup
  * body { name, email, password }
  *
  * После успешной регистрации добавляем токен в HTTP-заголовок
  */
-const register = credentials => dispatch => {};
+const register = credentials => dispatch => {
+  dispatch(authActions.registerRequest());
+  axios
+  .post('/users/signup', credentials)
+  .then(({data}) => {
+    // userToken.set(data.token);
+    dispatch(authActions.registerSuccess(data));
+  })
+  .catch(error => dispatch(authActions.registerError(error.message)));
+};
 
 
 /*
@@ -29,7 +37,16 @@ const register = credentials => dispatch => {};
  *
  * После успешного логина добавляем токен в HTTP-заголовок
  */
-const logIn = credentials => dispatch => {};
+const logIn = credentials => dispatch => {
+  dispatch(authActions.loginRequest());
+  axios
+  .post('/users/login', credentials)
+    .then(({ data }) => {
+      // userToken.set(data.token);
+      dispatch(authActions.loginSuccess(data));
+    })
+    .catch(error => dispatch(authActions.loginError(error.message)));
+};
 
 
 /*
@@ -39,7 +56,16 @@ const logIn = credentials => dispatch => {};
  *
  * 1. После успешного логаута, удаляем токен из HTTP-заголовка
  */
-const logOut = () => dispatch => {};
+const logOut = () => dispatch => {
+  dispatch(authActions.logoutRequest());
+  axios
+    .post('/users/logout')
+    .then(() => {
+      // userToken.unset();
+      dispatch(authActions.logoutSuccess());
+    })
+    .catch(error => dispatch(authActions.logoutError(error.message)));
+};
 
 /*
  * GET @ /users/current
@@ -50,7 +76,23 @@ const logOut = () => dispatch => {};
  * 2. Если токена нет, выходим не выполняя никаких операций
  * 3. Если токен есть, добавляет его в HTTP-заголовок и выполянем операцию
  */
-const getCurrentUser = () => (dispatch, getState) => {};
+const getCurrentUser = () => (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+
+  if (!persistedToken) {
+    return;
+  }
+  userToken.set(persistedToken);
+  dispatch(authActions.getCurrentUserRequest());
+  axios
+    .get('/users/current')
+    .then(({ data }) => {
+      dispatch(authActions.getCurrentUserSuccess(data));
+    })
+    .catch(error => dispatch(authActions.getCurrentUserError(error.message)));
+};
 
 
 /*eslint-disable*/

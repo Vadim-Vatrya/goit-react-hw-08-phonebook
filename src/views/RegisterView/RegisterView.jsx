@@ -39,7 +39,7 @@ const RegisterView = () => {
       return
     };
 
-    dispatch(authOperations.logIn({ name, email, password }));
+    dispatch(authOperations.register({ name, email, password }));
     setName('');
     setEmail('');
     setPassword('');
@@ -50,7 +50,7 @@ const RegisterView = () => {
     <>
       
       <form onSubmit={handleSubmit}>
-      <labelForm>
+        <labelForm>
           Name
           <inputForm
             onChange={handleChange}
@@ -81,8 +81,7 @@ const RegisterView = () => {
           />
         </labelForm>
 
-       
-          <button type="submit">Sing Up</button>
+        <button type="submit">Sing Up</button>
         
       </form>
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSelector} from 'redux-react';
+import {useSelector} from 'react-redux';
 
-import authSelectors from 'redux/auth/auth-selectors';
+import authSelectors from '../../redux/auth/auth-selectors';
 import Navigation from '../Navigation';
 import AuthNav from '../AuthNav';
 import UserMenu from '../UserMenu';
